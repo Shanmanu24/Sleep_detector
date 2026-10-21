@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EagleEye! A SLEEP DETECTIVE</title>
+<title>EagleEye_SLEEP DETECTIVE</title>
 <style>
 :root {
   --bg: #0a0e17;
@@ -148,7 +148,7 @@ body.drowsy { animation: flashBody 1s ease-in-out infinite; }
     <div class="brand">
       <span class="brand-mark">&#9673;</span>
       <div class="brand-text">
-        <h1>NIGHTWATCH — Browser Demo</h1>
+        <h1>EagleEye_The Sleep Detective</h1>
         <p>Client-side preview of the Sleep Detecting System UI</p>
       </div>
     </div>
@@ -213,8 +213,8 @@ body.drowsy { animation: flashBody 1s ease-in-out infinite; }
       </div>
 
       <div class="controls">
-        <button class="btn" id="calibrateBtn" disabled>CALIBRATE BASELINE</button>
-        <button class="btn danger" id="simulateBtn">SIMULATE DROWSY ALERT</button>
+        <button class="btn" id="calibrateBtn" disabled>CALIBRATION</button>
+        <button class="btn danger" id="simulateBtn">DROWSY ALERT</button>
       </div>
 
       <div class="legend">
@@ -369,7 +369,7 @@ function analysisLoop(ts) {
     return;
   }
 
-  const pct = Math.max(0, Math.min(1, brightness / (baseline * 1.15))) * 100;
+  const pct = Math.max(0, Math.min(1, brightness / (baseline * 1.05))) * 100;
   els.brightBar.style.width = pct + '%';
 
   const isClosed = brightness < baseline * CLOSE_RATIO;
@@ -404,7 +404,7 @@ els.simulateBtn.addEventListener('click', () => {
     clearTimeout(simTimer);
     simulating = false;
     setDrowsy(false);
-    els.simulateBtn.textContent = 'SIMULATE DROWSY ALERT';
+    els.simulateBtn.textContent = 'DROWSY ALERT';
     return;
   }
   simulating = true;
@@ -413,7 +413,7 @@ els.simulateBtn.addEventListener('click', () => {
   simTimer = setTimeout(() => {
     simulating = false;
     setDrowsy(false);
-    els.simulateBtn.textContent = 'SIMULATE DROWSY ALERT';
+    els.simulateBtn.textContent = 'DROWSY ALERT';
   }, 4000);
 });
 
