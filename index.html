@@ -64,4 +64,390 @@ nav { position: relative; display: flex; align-items: center; justify-content: s
 .win { position: relative; margin: 150px 36px 24px; border: 1px solid var(--line); border-radius: 12px; background: rgba(20,11,46,.82);
   backdrop-filter: blur(8px); display: grid; grid-template-columns: 190px 1fr; overflow: hidden; }
 .side { padding: 14px 12px; border-right: 1px solid var(--line); font-size: 12px; color: var(--text-dim); }
-.side .brand { display: flex; align-items: center; gap: 6px; color: var(--text); margin-bottom: 18px;
+.side .brand { display: flex; align-items: center; gap: 6px; color: var(--text); margin-bottom: 18px; }
+.side .brand i { width: 16px; height: 16px; border-radius: 4px; background: var(--panel-2); display: inline-block; }
+.side .item { padding: 7px 8px; border-radius: 6px; margin-bottom: 2px; cursor: pointer; }
+.side .item:hover { color: #fff; }
+.side .item.on { background: var(--panel-2); color: #fff; cursor: default; }
+.side .cap { margin: 18px 0 6px 8px; font-size: 10px; letter-spacing: .08em; color: var(--text-faint); }
+.main { padding: 14px 18px 20px; min-width: 0; }
+.bar-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-dim); }
+.bar-top b { font-weight: 600; color: var(--text); font-size: 13px; }
+.bar-top a { color: var(--text-dim); text-decoration: none; }
+
+.notice { background: rgba(255,176,32,0.07); border: 1px solid rgba(255,176,32,0.3); border-radius: 8px; padding: 12px 14px;
+  font-size: 12.5px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.55; }
+.notice strong { color: var(--amber); }
+
+.grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 14px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.panel-head h2 { margin: 0; font-size: 11px; letter-spacing: 0.08em; color: var(--text-faint); font-weight: 500; }
+.badge { font-size: 11px; color: var(--amber); border: 1px solid rgba(255,176,32,0.4); padding: 3px 9px; border-radius: 999px; }
+.badge.ok { color: var(--cyan); border-color: rgba(45,225,194,0.4); }
+.badge.alarm { color: var(--red-hi); border-color: rgba(255,77,90,0.5); }
+
+.feed-frame { position: relative; width: 100%; aspect-ratio: 4/3; background: #06030f; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.feed-frame video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); display: block; }
+.feed-corner { position: absolute; width: 20px; height: 20px; border: 2px solid var(--violet); opacity: 0.8; }
+.feed-corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.feed-corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+.feed-corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+.feed-corner.br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+.eye-box { position: absolute; border: 1.5px dashed var(--cyan); border-radius: 3px; opacity: 0.85; top: 30%; left: 30%; width: 40%; height: 16%;
+  box-shadow: 0 0 10px rgba(45,225,194,0.25) inset; }
+.eye-box.alarm { border-color: var(--red-hi); box-shadow: 0 0 10px rgba(255,77,90,0.3) inset; }
+.eye-box-label { position: absolute; top: -18px; left: 0; font-size: 10px; letter-spacing: 0.05em; color: var(--cyan); }
+.feed-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; padding: 20px; }
+.feed-placeholder[hidden], .eye-box[hidden], video[hidden] { display: none; }
+.feed-placeholder button { background: #8b3dff; color: #fff; border: 1px solid var(--violet); font: 600 13px Inter, sans-serif; padding: 10px 20px; border-radius: 8px; cursor: pointer; letter-spacing: 0.04em; }
+.feed-placeholder button:hover { background: #9a55ff; }
+.feed-placeholder p { margin: 0; color: var(--text-dim); font-size: 12.5px; max-width: 320px; }
+.feed-note { margin: 10px 2px 0; font-size: 12px; color: var(--text-faint); line-height: 1.5; }
+
+.panel-side { display: flex; flex-direction: column; gap: 12px; align-self: start; }
+.alert-banner { display: flex; align-items: center; gap: 10px; background: rgba(255,77,90,0.12); border: 1px solid rgba(255,77,90,0.5); border-radius: 8px;
+  padding: 0 14px; opacity: 0; max-height: 0; overflow: hidden; transition: opacity .2s, max-height .2s, padding .2s; }
+.alert-banner.show { opacity: 1; max-height: 100px; padding: 12px 14px; }
+.alert-icon { font-size: 20px; color: var(--red-hi); }
+.alert-banner strong { display: block; color: var(--red-hi); font-size: 12.5px; }
+.alert-banner span { display: block; font-size: 11.5px; color: var(--text-dim); margin-top: 2px; }
+
+.metric-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 13px 15px; }
+.metric-label { font-size: 10.5px; letter-spacing: 0.08em; color: var(--text-faint); margin-bottom: 5px; }
+.metric-value { font-size: 28px; font-weight: 600; color: var(--cyan); }
+.metric-value.alarm { color: var(--red-hi); }
+.metric-sub { margin-top: 6px; font-size: 11px; color: var(--text-faint); }
+.bar-track { position: relative; height: 8px; background: rgba(0,0,0,0.35); border-radius: 4px; margin-top: 8px; overflow: hidden; border: 1px solid var(--line); }
+.bar-fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--red-hi), var(--amber), var(--cyan)); transition: width .12s linear; }
+
+.controls { display: flex; flex-direction: column; gap: 8px; }
+.btn { background: transparent; border: 1px solid var(--cyan-dim); color: var(--cyan); font: 600 12px Inter, sans-serif; letter-spacing: 0.05em; padding: 10px; border-radius: 8px; cursor: pointer; }
+.btn:hover { background: rgba(45,225,194,0.1); }
+.btn.danger { border-color: rgba(255,77,90,0.5); color: var(--red-hi); }
+.btn.danger:hover { background: rgba(255,77,90,0.1); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn:focus-visible, .feed-placeholder button:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+
+.legend { font-size: 11.5px; color: var(--text-dim); display: flex; flex-direction: column; gap: 5px; }
+.legend p { margin: 0; display: flex; align-items: center; gap: 7px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.legend-dot.cyan { background: var(--cyan); }
+.legend-dot.red { background: var(--red-hi); }
+
+.foot { position: relative; padding: 0 0 22px; text-align: center; }
+.foot p { margin: 0; font-size: 11px; color: var(--text-faint); }
+
+body.drowsy { animation: flashBody 1s ease-in-out infinite; }
+@keyframes flashBody { 0%, 100% { box-shadow: inset 0 0 0 rgba(255,77,90,0); } 50% { box-shadow: inset 0 0 140px rgba(255,77,90,0.35); } }
+@media (prefers-reduced-motion: reduce) { body.drowsy { animation: none; box-shadow: inset 0 0 90px rgba(255,77,90,0.3); } }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .win { grid-template-columns: 1fr; margin: 110px 14px 18px; }
+  .side, .links { display: none; }
+  nav { padding: 16px 20px; }
+  .hero { padding: 60px 20px 0; }
+}
+</style>
+</head>
+<body>
+<div class="frame">
+  <i class="stars"></i>
+  <div class="floor"></div>
+  <div class="glow"></div>
+
+  <nav>
+    <div class="logo">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2 13s4-7 11-7 11 7 11 7-4 7-11 7S2 13 2 13z"/><circle cx="13" cy="13" r="3.4"/></svg>
+      eagleeye
+    </div>
+    <div class="links"><a href="#monitor">How it works</a><a href="#monitor">Calibration</a><a href="#monitor">Download</a><a href="#monitor">Contact Us</a></div>
+    <div class="system-status" id="systemStatus">
+      <span class="dot" id="statusDot"></span>
+      <span id="systemStatusText">SYSTEM ARMED</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>EagleEye – The Sleep Detective</h1>
+    <p class="sub">Let AI watch your eyes so you don't have to. Calibrate once, track eye closure live, and get a clear alarm before drowsiness turns dangerous.</p>
+    <span class="pill">Free browser preview, no install</span>
+  </section>
+
+  <div class="win" id="monitor">
+    <aside class="side">
+      <div class="brand"><i></i>eagleeye</div>
+      <div class="item">Quick actions</div>
+      <div class="cap">MONITORING</div>
+      <div class="item on">Live monitor</div>
+      <div class="item" onclick="document.getElementById('calibrateBtn').click()">Calibration</div>
+      <div class="item" onclick="document.getElementById('simulateBtn').click()">Alarm test</div>
+    </aside>
+
+    <div class="main">
+      <div class="bar-top"><b>Sleep Monitor</b><a href="" onclick="location.reload();return false">New session</a></div>
+
+      <div class="notice">
+        <strong>What's EagleEye:</strong> EagleEye – The Sleep Detective is a driver-drowsiness detection web app with a sleek dark, neon-teal interface.
+        It uses your webcam to monitor eye closure and triggers an alarm when your eyes stay shut too long. This browser-only preview relies on a simple brightness heuristic,
+        so no installs or ML downloads are needed. Users calibrate a baseline, then watch live eye-zone brightness and alertness status ("Awake" or "Drowsy Alert").
+        The full version uses MediaPipe eye-landmark tracking with a Python/Flask backend for greater accuracy.
+      </div>
+
+      <main class="grid">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>DRIVER FACING CAMERA</h2>
+            <span class="badge" id="faceBadge">CAMERA OFF</span>
+          </div>
+
+          <div class="feed-frame" id="feedFrame">
+            <video id="video" autoplay playsinline muted hidden></video>
+            <div class="feed-corner tl"></div>
+            <div class="feed-corner tr"></div>
+            <div class="feed-corner bl"></div>
+            <div class="feed-corner br"></div>
+            <div class="eye-box" id="eyeBox" hidden>
+              <span class="eye-box-label">EYE ZONE</span>
+            </div>
+            <div class="feed-placeholder" id="feedPlaceholder">
+              <button id="startBtn">ENABLE CAMERA</button>
+              <p>Align your eyes inside the dashed box once the feed starts, then hit Calibrate.</p>
+            </div>
+          </div>
+          <p class="feed-note">Runs entirely in your browser — no video is uploaded anywhere.</p>
+        </section>
+
+        <aside class="panel panel-side">
+          <div class="alert-banner" id="alertBanner">
+            <div class="alert-icon">&#9888;</div>
+            <div>
+              <strong>DROWSINESS ALERT</strong>
+              <span>Eye zone gone dark — alarm sounding.</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">EYE-ZONE BRIGHTNESS</div>
+            <div class="metric-value" id="brightValue">—</div>
+            <div class="bar-track"><div class="bar-fill" id="brightBar" style="width:0%"></div></div>
+            <div class="metric-sub" id="calibNote">Calibrate to set your baseline</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-label">ALERTNESS</div>
+            <div class="metric-value" id="alertnessValue" style="font-size:19px;">AWAKE</div>
+          </div>
+
+          <div class="controls">
+            <button class="btn" id="calibrateBtn" disabled>CALIBRATION</button>
+            <button class="btn danger" id="simulateBtn">DROWSY ALERT</button>
+          </div>
+
+          <div class="legend">
+            <p><span class="legend-dot cyan"></span> Eyes open / tracking normally</p>
+            <p><span class="legend-dot red"></span> Eyes closed too long — alarm triggers</p>
+          </div>
+        </aside>
+      </main>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <p>This is our EagleEye. Built for College and Commercial uses.</p>
+  </footer>
+</div>
+
+<script>
+const els = {
+  video: document.getElementById('video'),
+  startBtn: document.getElementById('startBtn'),
+  feedPlaceholder: document.getElementById('feedPlaceholder'),
+  eyeBox: document.getElementById('eyeBox'),
+  faceBadge: document.getElementById('faceBadge'),
+  brightValue: document.getElementById('brightValue'),
+  brightBar: document.getElementById('brightBar'),
+  calibNote: document.getElementById('calibNote'),
+  alertnessValue: document.getElementById('alertnessValue'),
+  alertBanner: document.getElementById('alertBanner'),
+  statusDot: document.getElementById('statusDot'),
+  systemStatusText: document.getElementById('systemStatusText'),
+  calibrateBtn: document.getElementById('calibrateBtn'),
+  simulateBtn: document.getElementById('simulateBtn'),
+};
+
+let audioCtx = null;
+let alarmNodes = null;
+let alarmOn = false;
+let baseline = null;
+let closedFrames = 0;
+const CLOSED_FRAMES_TO_ALARM = 6; // ~1.2s at our ~5fps analysis loop
+const CLOSE_RATIO = 0.72; // brightness must drop below 72% of baseline to count as "closing"
+
+let simulating = false;
+let simTimer = null;
+
+// ---------- Alarm (synthesized, no audio file needed) ----------
+function ensureAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+
+function startAlarm() {
+  ensureAudioCtx();
+  if (alarmNodes) return;
+  const osc = audioCtx.createOscillator();
+  const lfo = audioCtx.createOscillator();
+  const lfoGain = audioCtx.createGain();
+  const gain = audioCtx.createGain();
+
+  osc.type = 'sine';
+  osc.frequency.value = 1000;
+  lfo.type = 'sine';
+  lfo.frequency.value = 2.2;
+  lfoGain.gain.value = 350;
+  gain.gain.value = 0.18;
+
+  lfo.connect(lfoGain);
+  lfoGain.connect(osc.frequency);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  lfo.start();
+  alarmNodes = { osc, lfo, gain };
+}
+
+function stopAlarm() {
+  if (!alarmNodes) return;
+  alarmNodes.osc.stop();
+  alarmNodes.lfo.stop();
+  alarmNodes = null;
+}
+
+// ---------- UI state ----------
+function setDrowsy(isDrowsy) {
+  if (isDrowsy === alarmOn) return;
+  alarmOn = isDrowsy;
+  document.body.classList.toggle('drowsy', isDrowsy);
+  els.alertBanner.classList.toggle('show', isDrowsy);
+  els.alertnessValue.textContent = isDrowsy ? 'DROWSY' : 'AWAKE';
+  els.alertnessValue.classList.toggle('alarm', isDrowsy);
+  els.eyeBox.classList.toggle('alarm', isDrowsy);
+  els.statusDot.classList.toggle('alarm', isDrowsy);
+  els.systemStatusText.textContent = isDrowsy ? 'ALARM TRIGGERED' : 'SYSTEM ARMED';
+  if (isDrowsy) startAlarm(); else stopAlarm();
+}
+
+// ---------- Camera + brightness analysis ----------
+let canvas = document.createElement('canvas');
+let ctx = canvas.getContext('2d', { willReadFrequently: true });
+let rafHandle = null;
+let lastAnalysis = 0;
+
+async function startCamera() {
+  try {
+    ensureAudioCtx();
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+    els.video.srcObject = stream;
+    els.video.hidden = false;
+    els.feedPlaceholder.hidden = true;
+    els.eyeBox.hidden = false;
+    els.faceBadge.textContent = 'CAMERA LIVE';
+    els.faceBadge.className = 'badge ok';
+    els.calibrateBtn.disabled = false;
+    els.video.addEventListener('loadedmetadata', () => {
+      canvas.width = 160;
+      canvas.height = 120;
+      requestAnimationFrame(analysisLoop);
+    }, { once: true });
+  } catch (err) {
+    els.faceBadge.textContent = 'CAMERA DENIED';
+    els.faceBadge.className = 'badge alarm';
+    els.calibNote.textContent = 'Camera permission was blocked — allow it and reload to test live tracking.';
+  }
+}
+
+function sampleEyeZoneBrightness() {
+  // Eye box in CSS is centered horizontally, 30%-46% of height. Mirror it in canvas coords.
+  ctx.drawImage(els.video, 0, 0, canvas.width, canvas.height);
+  const x = Math.round(canvas.width * 0.30);
+  const y = Math.round(canvas.height * 0.30);
+  const w = Math.round(canvas.width * 0.40);
+  const h = Math.round(canvas.height * 0.16);
+  const data = ctx.getImageData(x, y, w, h).data;
+  let sum = 0;
+  for (let i = 0; i < data.length; i += 4) {
+    sum += (data[i] + data[i + 1] + data[i + 2]) / 3;
+  }
+  return sum / (data.length / 4); // 0-255
+}
+
+function analysisLoop(ts) {
+  rafHandle = requestAnimationFrame(analysisLoop);
+  if (simulating) return; // manual simulation overrides live analysis
+  if (ts - lastAnalysis < 180) return; // ~5-6fps analysis is plenty
+  lastAnalysis = ts;
+
+  if (els.video.readyState < 2) return;
+  const brightness = sampleEyeZoneBrightness();
+  els.brightValue.textContent = Math.round(brightness);
+
+  if (baseline === null) {
+    els.brightBar.style.width = '50%';
+    return;
+  }
+
+  const pct = Math.max(0, Math.min(1, brightness / (baseline * 1.05))) * 100;
+  els.brightBar.style.width = pct + '%';
+
+  const isClosed = brightness < baseline * CLOSE_RATIO;
+  if (isClosed) {
+    closedFrames++;
+  } else {
+    closedFrames = 0;
+  }
+  setDrowsy(closedFrames >= CLOSED_FRAMES_TO_ALARM);
+}
+
+els.calibrateBtn.addEventListener('click', () => {
+  const samples = [];
+  els.calibNote.textContent = 'Calibrating — keep eyes open, look at the box…';
+  let count = 0;
+  const interval = setInterval(() => {
+    if (els.video.readyState >= 2) {
+      samples.push(sampleEyeZoneBrightness());
+    }
+    count++;
+    if (count >= 10) {
+      clearInterval(interval);
+      baseline = samples.reduce((a, b) => a + b, 0) / samples.length;
+      els.calibNote.textContent = `Baseline set (${Math.round(baseline)}). Try closing your eyes for 2s.`;
+    }
+  }, 150);
+});
+
+els.simulateBtn.addEventListener('click', () => {
+  ensureAudioCtx();
+  if (simulating) {
+    clearTimeout(simTimer);
+    simulating = false;
+    setDrowsy(false);
+    els.simulateBtn.textContent = 'DROWSY ALERT';
+    return;
+  }
+  simulating = true;
+  setDrowsy(true);
+  els.simulateBtn.textContent = 'STOP SIMULATION';
+  simTimer = setTimeout(() => {
+    simulating = false;
+    setDrowsy(false);
+    els.simulateBtn.textContent = 'DROWSY ALERT';
+  }, 4000);
+});
+
+els.startBtn.addEventListener('click', startCamera);
+</script>
+</body>
+</html>
